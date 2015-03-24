@@ -1,0 +1,684 @@
+# syntax for all UICONTROLS #
+
+//
+//  ViewController.m
+//  AllSyntaxes(Kapli)
+//
+//  Created by agile on 2/24/15.
+//  Copyright (c) 2015 HN Company. All rights reserved.
+//
+
+#import "ViewController.h"
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark-toolbar
+-(void)toolbar
+{
+
+    UIBarButtonItem *barButtonGuj = [[UIBarButtonItem alloc] initWithTitle:@"Gujarat" style:UIBarButtonItemStyleBordered target:self action:@selector(btnClickGuj)];
+    
+    UIBarButtonItem *barButtonMah = [[UIBarButtonItem alloc]
+                                     initWithTitle:@"Maharastra" style:UIBarButtonItemStyleBordered target:self action:@selector(btnClickMah)];
+    
+    UIBarButtonItem *barButtonRaj = [[UIBarButtonItem alloc] initWithTitle:@"Rajsthan" style:UIBarButtonItemStyleBordered target:self action:@selector(btnClickRaj)];
+    
+    UIBarButtonItem *barButtonSpace1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    UIBarButtonItem *barButtonSpace2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    NSArray *barItem = [[NSArray alloc] initWithObjects:barButtonGuj,barButtonSpace1,barButtonMah,barButtonSpace2,barButtonRaj, nil];
+    
+    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 370, 320, 40)];
+    toolBar.items = barItem;
+    toolBar.barStyle = UIBarStyleDefault;
+    [self.view addSubview:toolBar];
+
+
+}
+
+
+#pragma mark-tabbar
+-(void)tabbar
+{
+
+   UITabBarController *tabBarCont = [[UITabBarController alloc]init];
+    /*  name of all view controllers which we wanna add into tabbar
+     
+     
+    TabviewController1 *reg = [[TabviewController1 alloc] init];
+    TabviewController2 *login = [[TabviewController2 alloc] init];
+    
+    NSArray *arrTabController = [[NSArray alloc] initWithObjects:reg,login, nil];
+    
+    [tabBarCont setViewControllers:arrTabController];
+    
+    [self.window setRootViewController:tabBarCont];
+     */
+    
+    self.title = @"Registration Form";
+    self.tabBarItem.image = [[UIImage imageNamed:@"register_icon"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+
+}
+
+
+#pragma mark -imagepicker with all methods
+-(void)imagepicker
+{
+    UIImagePickerController *imgPic=[[UIImagePickerController alloc]init];
+    
+    imgPic.delegate=self;
+    
+    
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        imgPic.sourceType=UIImagePickerControllerSourceTypeCamera;
+    }
+    else
+    {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Warning" message:@"Your device has not Camera feature." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Gallery", nil];
+        
+        [alert show];
+    }
+}
+/*
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1)
+    {
+        [self presentViewController:imgPic animated:YES completion:nil];
+        
+        
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    //    img.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    //    img.image = info[UIImagePickerControllerEditedImage];
+    
+    img.image = [info objectForKey:UIImagePickerControllerEditedImage];
+    
+    [picker dismissViewControllerAnimated:true completion:nil];
+}
+ */
+
+
+#pragma mark -Image Animation
+-(void)imageAnimation
+{
+
+    UIImageView *img=[[UIImage alloc]init];
+    NSArray *imgArray;
+    
+    UIImage *img1 = [UIImage imageNamed:@"i1.png"];
+    UIImage *img2 = [UIImage imageNamed:@"i2.png"];
+    UIImage *img3 = [UIImage imageNamed:@"i3.png"];
+    UIImage *img4 = [UIImage imageNamed:@"i4.png"];
+    UIImage *img5 = [UIImage imageNamed:@"i5.png"];
+    UIImage *img6 = [UIImage imageNamed:@"i6.png"];
+    UIImage *img7 = [UIImage imageNamed:@"i7.png"];
+    UIImage *img8 = [UIImage imageNamed:@"i8.png"];
+    UIImage *img9 = [UIImage imageNamed:@"i9.png"];
+    UIImage *img10 = [UIImage imageNamed:@"i10.png"];
+    UIImage *img11 = [UIImage imageNamed:@"i11.png"];
+    UIImage *img12 = [UIImage imageNamed:@"i12.png"];
+    UIImage *img13 = [UIImage imageNamed:@"i13.png"];
+    UIImage *img14 = [UIImage imageNamed:@"i14.png"];
+    UIImage *img15 = [UIImage imageNamed:@"i15.png"];
+    UIImage *img16 = [UIImage imageNamed:@"i16.png"];
+    imgArray = [[NSArray alloc]initWithObjects:img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15,img16, nil];
+    [img initWithImage:img1];
+    img.animationImages=imgArray;
+    img.animationDuration=2;
+    [img startAnimating];
+    [self.view addSubview:img];
+    
+    [img stopAnimating];
+}
+
+
+#pragma mark -custom table view
+-(void)customTableview
+{/*
+
+    - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+    {
+        if (indexPath.section==0)
+        {
+            NSArray *arrClasses = [[NSBundle mainBundle] loadNibNamed:@"CustomTableCell" owner:nil options:nil];
+            
+            CustomTableCell *cell = (CustomTableCell *)[arrClasses objectAtIndex:0];
+            
+            cell.lblName.text = @"Username";
+            cell.lblDesc.text = @"Description";
+            [cell.btnYes addTarget:self action:@selector(ClickYesButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.btnNo addTarget:self action:@selector(ClickNoButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+            cell.btnNo.tag = indexPath.row;
+            
+            return cell;
+        }
+        else
+        {
+            NSArray *arrClasses = [[NSBundle mainBundle] loadNibNamed:@"SecondCellTableViewCell" owner:nil options:nil];
+            
+            SecondCellTableViewCell *cell = (SecondCellTableViewCell *)[arrClasses objectAtIndex:0];
+            
+            cell.lblNAme.text = @"Section";
+            
+            
+            return cell;
+        }
+    }
+
+*/
+}
+
+
+#pragma mark -collection view
+-(void)collectionView
+{
+/*
+    -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+    {
+        return 2;
+    }
+    
+    - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+    {
+        return 17;
+    }
+    -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView1 cellForItemAtIndexPath:(NSIndexPath *)indexPath
+    {
+        UICollectionViewCell *cell = [collectionView1 dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+        
+        [cell.contentView setBackgroundColor:[UIColor redColor]];
+        
+        UILabel *lblName = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 21)];
+        lblName.text=[NSString stringWithFormat:@"%d",indexPath.row];
+        [cell.contentView addSubview:lblName];
+        
+        return cell;
+        
+        
+        
+    }
+
+    */
+}
+
+
+#pragma mark -custom delegate
+-(void)customDelegate
+{
+/* write this in the view controller where we wanna do change
+    @protocol customDelegate<NSObject>
+    
+    @optional
+    -(void)changeBackgroundColor:(UIColor *)color;
+    
+    @end
+*/
+   /* (void)changeBackgroundColor:(UIColor *)color
+    {
+        [self.view setBackgroundColor:color];
+        
+    }
+    */
+}
+
+
+#pragma mark-create document directory
+-(void)CreateDocumentDirectory
+{
+/*
+    NSArray *arrPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory ,NSUserDomainMask,YES);
+    
+    //        NSString *strDicpath =[NSString stringWithFormat:@"%@/Documents",NSHomeDirectory()];
+    // NSLog(@"strDicpath :: %@",strDicpath);
+    NSError *error;
+    
+   NSString *strMyImageFolderPath =[[arrPath objectAtIndex:0] stringByAppendingPathComponent:@"ProfilePicture"];
+    
+    BOOL isFileCreated =[[NSFileManager defaultManager]fileExistsAtPath:strMyImageFolderPath];
+    error = Nil;
+    
+    if (isFileCreated == NO)
+    {
+        if (![[NSFileManager defaultManager]createDirectoryAtPath:strMyImageFolderPath withIntermediateDirectories:nil attributes:Nil error:&error])
+        {
+            
+            NSLog(@"%@",error);
+            
+        };
+    }
+    
+    NSMutableString *name=[NSMutableString stringWithFormat:@"%@",strDate];
+    
+    
+    NSString *strDestPath = [strMyImageFolderPath stringByAppendingPathComponent:name];
+    
+    
+    
+    [dataProfileImage writeToFile:strDestPath atomically:YES];
+*/
+    
+    /*
+     
+ ********    get image from path  **********
+     
+     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
+     
+     NSString *documentsDirectory = [paths objectAtIndex:0];
+     NSString *imageDir = [documentsDirectory stringByAppendingPathComponent:@"ProfilePicture"];
+     NSString *getImagePath = [imageDir stringByAppendingPathComponent:[[arrOfImages objectAtIndex:i] valueForKey:@"ImageName"]];
+     UIImage *img = [UIImage imageWithContentsOfFile:getImagePath];
+     
+     
+     
+     */
+    
+}
+
+
+#pragma mark -NSDate 
+-(void)NSDate
+{
+
+    NSDate *currentDate = [NSDate new];
+    NSLog(@"current date %@",currentDate);
+    
+    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+    [dateFormater setDateFormat:@"mm-dd-yyyy hh:mm:ss z"];
+    NSString *strDate = [dateFormater stringFromDate:currentDate];
+    NSDate *conDate = [dateFormater dateFromString:strDate];
+    [dateFormater setDateFormat:@"a"];
+    NSString *StrConvert = [dateFormater stringFromDate:conDate];
+    
+    
+    /******************** 
+     
+     ***********Calender*************
+     
+     NSCalendar *cal = [NSCalendar currentCalendar];
+     NSDateComponents *com = [cal components:( NSMonthCalendarUnit| NSDayCalendarUnit | NSYearCalendarUnit ) fromDate:date];
+     [com setDay:day];
+     [com setMonth:month];
+     [com setYear:year];
+     [com setHour:hour];
+     [com setMinute:min];
+     [com setSecond:sec];
+     NSDate *newDate = [cal dateFromComponents:com];
+
+     NSCalendar *cal = [NSCalendar currentCalendar];
+     NSDateComponents *com = [cal components:( NSMonthCalendarUnit| NSDayCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit ) fromDate:currentDate];
+     NSString *str=[NSString stringWithFormat:@"%ld", (long)com.day];
+*/
+
+
+}
+
+
+
+#pragma mark -mapview
+-(void)mapview
+{
+    /*
+     
+     **********Firstlly add MkMapkit & core location framework to your project**************
+
+    MKMapView mapView = [[MKMapView alloc] initWithFrame:CGRectMake(10, 50, 300, 400)];
+    mapView.delegate=self;
+    mapView.mapType=MKMapTypeStandard;
+    mapView.centerCoordinate=CLLocationCoordinate2DMake(27.00000, -122.0000);
+    
+    CLLocationCoordinate2D location1;
+    location1.latitude = (double)37.46;
+    location1.longitude = (double) 122.25 ;
+    
+    
+    MapAnnotation *annotation1 = [[MapAnnotation alloc] initWithTitle:@"Testing" usingLocation:location1];
+    //[mapView setCenterCoordinate:location1];
+    [mapView addAnnotation:annotation1];
+    mapView.showsUserLocation = true;
+    [self.view addSubview:mapView];
+    
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location1, 10, 10);
+    [mapView setRegion:region animated:YES];
+    [mapView selectAnnotation:annotation1 animated:YES];
+
+    */
+    
+    /* used in maptask code
+    
+   CLLocationManager *location=[[CLLocationManager alloc]init];
+    [location setDelegate:self];
+    //    mapView.showsUserLocation=YES;
+    //    [location startUpdatingLocation];
+    
+    
+    for(int i=0;i<arrOfPins.count;i++)
+    {
+       MKPointAnnotation *pin=[[MKPointAnnotation alloc]init];
+        NSString *strlat,*strlog;
+        
+        strlat=[[arrOfPins objectAtIndex:i]valueForKey:@"Latitude"];
+        strlog=[[arrOfPins objectAtIndex:i]valueForKey:@"Longitude"];
+        
+        CLLocationCoordinate2D location1;
+        location1.latitude = strlat.doubleValue;
+        location1.longitude = strlog.doubleValue;
+        
+        pin.coordinate = location1;
+        [objMapView setCenterCoordinate:pin.coordinate];
+        
+        pin.title=[NSString stringWithFormat:@"%@",[[arrOfPins objectAtIndex:i]valueForKey:@"Country"]];
+        pin.subtitle=@"US";
+        
+        [objMapView addAnnotation:pin];
+    }
+*/
+/******to select pin********/
+/*
+ 
+ - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    
+    //    MKCoordinateRegion reginPinArea = MKCoordinateRegionMake(pin.coordinate, MKCoordinateSpanMake(1.0, 1.0));
+    //    [mapView setRegion:reginPinArea animated:YES];
+    
+    //    [objMapView setCenterCoordinate:pin.coordinate animated:YES];
+    
+    MKCoordinateRegion region =  MKCoordinateRegionMakeWithDistance(pin.coordinate, 1.0, 1.0);
+    [mapView setRegion:region animated:YES];
+    
+    
+}
+*/
+    
+}
+
+
+#pragma mark -audio player
+-(void)audioPlayer
+{
+
+    /*
+     ************Please install Avfoundation framework 1st************************
+     
+     NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:self.strSongName ofType:@".mp3"];
+     
+     
+     NSError *error;
+     
+     player=[[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:soundFilePath] error:&error];
+     
+     if (error)
+     {
+     NSLog(@"Error in audioPlayer: %@",[error localizedDescription]);
+     }
+     else
+     {
+     [player setDelegate:self];
+     [player setNumberOfLoops:0]; //just to make sure it is playing my file several times
+     player.volume = 1.0f;
+     
+     if([player prepareToPlay]) //It is always ready to play
+     NSLog(@"It is ready to play");
+     else
+     NSLog(@"It is NOT ready to play ");
+     
+     
+     }
+     //    slider.maximumValue = player.duration;
+     // Set the valueChanged target
+     //    [sliderForVolume addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
+     
+     t=[player duration];
+     NSLog(@"%f",t);
+     
+     sliderForProgress.maximumValue = player.duration;
+     sliderForProgress.minimumValue = 0;
+     
+     [self songPlay];
+
+*/
+    
+    /****
+     ********for player volume ************
+     
+     if (player != nil)
+     {
+     player.volume = slider.value;
+     
+     slider.maximumValue = 100;
+     slider.minimumValue = 0;
+     slider.value = player.volume;
+     player.volume = slider.value;
+     }
+
+     **/
+    
+    /***
+     *********Progress Update***********
+     -(void)songPlay
+     {
+     
+     [player play];
+     btnPlay.hidden=YES;
+     btnPause.hidden=FALSE;
+     timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(audioProgressUpdate) userInfo:nil repeats:YES];
+     
+     
+     }
+     - (void)audioProgressUpdate
+     {
+     //    if (player != nil && player.duration > 0.0)
+     //    {
+     //        [progress setProgress:(player.currentTime / player.duration)];
+     //    }
+     sliderForProgress.value = player.currentTime;
+     }
+     */
+    
+    /****for slider value change
+     
+     - (IBAction)sliderforProgress:(id)sender
+     {
+     player.currentTime = sliderForProgress.value;
+     /*    sliderForProgress.value = player.currentTime;
+     
+     }
+     */
+    
+}
+
+
+#pragma  mark -segue code
+-(void)segue
+{
+/*
+    - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+    {
+        if ([[segue identifier] isEqualToString:@"OnLogin"]) {
+            
+            //        ProfileFormViewController *ProfileVC=[segue destinationViewController] ;
+            UITabBarController *facultyTabBar=[self.storyboard instantiateViewControllerWithIdentifier:@"TeacherTabBar"];
+            [objAppDelegate.window setRootViewController:facultyTabBar];
+            //        facultyTabBar = [segue destinationViewController];
+            
+        }
+        else if ([[segue identifier] isEqualToString:@"OnStudentLogin"])
+        {
+            UITabBarController *StudentTabBar=[self.storyboard instantiateViewControllerWithIdentifier:@"StudentTabBar"];
+            [objAppDelegate.window setRootViewController:StudentTabBar];
+            //        StudentTabBar = [segue destinationViewController];
+        }
+    }
+
+*/
+    
+    /* to call it from segue
+     
+     [self performSegueWithIdentifier:@"OnLogin" sender:nil];
+     */
+}
+
+#pragma mark -segment demo
+-(void)segment
+{
+
+/*****
+ 
+ ********on value change event of segment*********
+ 
+ - (IBAction)segmentValueChange:(id)sender
+ {
+ NSArray *arrSegment = [[NSArray alloc] initWithObjects:@"First",@"Second",@"Third", nil];
+ //    if (self.segment.selectedSegmentIndex)
+ //    {
+ //
+ //    }
+ alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:[arrSegment objectAtIndex:segment.selectedSegmentIndex] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:@"Cancel",@"Back",@"Finish", nil];
+ [alert show];
+ }
+*/
+
+}
+
+
+#pragma mark -actionSheet
+-(void)ActionSheet
+{
+
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Action Sheet" delegate:nil cancelButtonTitle:@"Cancle" destructiveButtonTitle:nil otherButtonTitles:@"OK",@"Finish",@"Back", nil];
+    [actionSheet showInView:self.view];
+
+
+}
+
+#pragma mark -scrollView
+-(void)ScrollView
+{
+
+    /******* to add contentSize*******
+    
+     ScrollView.contentSize=CGSizeMake(640, 1120);
+     */
+    
+    /********* ScrollRecttoVisible********
+      [ScrollView scrollRectToVisible:CGRectMake(0, 60, 320, 568) animated:YES];
+     */
+}
+
+#pragma mark -JSON 
+-(void)json
+{
+
+    NSString *datapath =[[NSBundle mainBundle]pathForResource:@"Widget" ofType:@"json"];
+    NSData * data=[[NSData alloc]initWithContentsOfFile:datapath];
+    
+    NSError *error;
+    NSDictionary *maindic=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+
+
+}
+
+#pragma mark -XML
+-(void)XML
+{
+
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"simple" ofType:@"xml"];
+    
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:filePath]];
+    [parser setDelegate:self];
+    [parser parse];
+
+/*
+ 
+ - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
+ {
+ strElement = elementName;
+ if ([strElement isEqualToString:@"food"])
+ {
+ dictData = [[NSMutableDictionary alloc ]init];
+ return;
+ }
+ 
+ 
+ }
+ - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+ {
+ if ([elementName isEqualToString:@"food"])
+ {
+ [arrAllData addObject:dictData];
+ [dictData removeAllObjects];
+ 
+ }
+ }
+ - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+ {
+ 
+ if ([strElement isEqualToString:@"name"])
+ {
+ [dictData setObject:string forKey:strElement];
+ }
+ 
+ }
+ - (void)parserDidEndDocument:(NSXMLParser *)parser{
+ 
+ NSLog(@"%@",arrAllData);
+ 
+ //[myTableView reloadData];
+ }
+*/
+ 
+}
+
+
+
+#pragma mark -NSUserDefault
+-(void)NSUserDefault
+{
+
+    /*
+     
+     [[NSUserDefaults standardUserDefaults]setValue:[[arrTemp objectAtIndex:0] valueForKey:@"UserID"] forKey:@"UserID"];*/
+    
+}
+
+#pragma mark - database object
+-(void)databaseObject
+{
+//    objOfSkDatabase = [[SKDatabase alloc]initWithFile:@"EducationalInfo.sqlite"];
+//    
+//    
+//    //    defaultValueforUserID=[NSUserDefaults standardUserDefaults];
+//    
+//    
+//    NSArray *arr=[objOfSkDatabase lookupAllForSQL:[NSString stringWithFormat:@"Select * from Registration where UserID=%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"UserID"] ]];
+//    
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+}
+
+@end
