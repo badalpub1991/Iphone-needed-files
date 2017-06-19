@@ -1,2 +1,6 @@
-# Iphone-needed-files
-this files include all syntax with description to configure controls.
+//Types of Mark in Xcode
+// MARK:data
+// TODO:data
+// FIXME:data
+// ???:data
+// !!!:data
