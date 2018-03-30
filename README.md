@@ -14,12 +14,11 @@
      // Register Cell Class
      tableView.register(CustomTableViewCell.self, forCellReuseIdentifier:
      CustomTableViewCell.identifier)
-     
-     //-----------------------------  RegisterCell with XIB .  --------------------------------------//
-     // Register Nib
-     tableView.register(UINib(nibName: CustomTableViewCell.identifier, bundle: nil),
-     forCellReuseIdentifier: CustomTableViewCell.identifier)
-      }
+      //-----------------------------  RegisterCell with XIB .  --------------------------------------//
+      // Register Nib
+      tableView.register(UINib(nibName: CustomTableViewCell.identifier, bundle: nil),
+      forCellReuseIdentifier: CustomTableViewCell.identifier)
+       }
     
     //--------------------------  TableView DataSource and Delegate Methods --------------------------//
     extension GoalsVc: UITableViewDelegate, UITableViewDataSource {
