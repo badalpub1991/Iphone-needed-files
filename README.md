@@ -10,15 +10,15 @@
 
     override func viewDidLoad() {
     super.viewDidLoad()
-    //--------------------------   RegisterCell without XIB   -------------------------------------//
-    // Register Cell Class
-    tableView.register(CustomTableViewCell.self, forCellReuseIdentifier:
-    CustomTableViewCell.identifier)
-    //-----------------------------  RegisterCell with XIB .  --------------------------------------//
-    // Register Nib
-    tableView.register(UINib(nibName: CustomTableViewCell.identifier, bundle: nil),
-    forCellReuseIdentifier: CustomTableViewCell.identifier)
-     }
+     //--------------------------   RegisterCell without XIB   -------------------------------------//
+     // Register Cell Class
+     tableView.register(CustomTableViewCell.self, forCellReuseIdentifier:
+     CustomTableViewCell.identifier)
+     //-----------------------------  RegisterCell with XIB .  --------------------------------------//
+     // Register Nib
+     tableView.register(UINib(nibName: CustomTableViewCell.identifier, bundle: nil),
+     forCellReuseIdentifier: CustomTableViewCell.identifier)
+      }
     
     //--------------------------  TableView DataSource and Delegate Methods --------------------------//
     extension GoalsVc: UITableViewDelegate, UITableViewDataSource {
@@ -69,7 +69,7 @@
         addAction.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.662745098, blue: 0.2666666667, alpha: 1)
         return [deleteAction,addAction]
     }
-}
+    }
 
 # UICOLLECTIONVIEW
 =============================
