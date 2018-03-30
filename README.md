@@ -14,6 +14,7 @@
      // Register Cell Class
      tableView.register(CustomTableViewCell.self, forCellReuseIdentifier:
      CustomTableViewCell.identifier)
+     
      //-----------------------------  RegisterCell with XIB .  --------------------------------------//
      // Register Nib
      tableView.register(UINib(nibName: CustomTableViewCell.identifier, bundle: nil),
