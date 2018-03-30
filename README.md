@@ -94,6 +94,93 @@
         return [deleteAction,addAction]
     }
     }
+    
+#### UICollectionView With CustomCell
+
+     // Create CollectionView Programatically
+      func createCollectionView() {
+         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: view.frame.width,
+         height: view.frame.height), collectionViewLayout: layout)
+         collectionView.dataSource = self
+         collectionView.delegate = self
+         view.addSubview(collectionView)
+     }
+---
+
+    extension ProductsVC: UICollectionViewDelegate, UICollectionViewDataSource{
+
+    // MARK: - UICollectionViewDataSource
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section:
+    Int) -> Int {
+     guard collectionView == collectionCategory else {
+     return arrOfProducts.count
+     }
+    return arrOfCategory.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
+    -> UICollectionViewCell {
+      guard collectionView == collectionProduct else {
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
+      "ProductCategoryCell", for: indexPath) as! ProductCategoryCell
+      cell.viewBackground.layer.borderWidth = 0.5
+      //Do some thing as per use
+      return cell
+    }
+     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for:
+    indexPath) as! ProductCell
+    cell.contentView.layer.borderWidth = 0.5
+    cell.contentView.layer.borderColor = UIColor.black.cgColor
+    let json = arrOfProducts[indexPath.row]
+    //Do something as per use
+    return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath:
+    IndexPath) {
+      guard collectionView == collectionCategory else {
+      let json = arrOfProducts[indexPath.row]
+      // Do something for collectionProduct here
+      return
+    }
+    let json = arrOfCategory[indexPath.row] as [String: AnyObject]
+    let id = json["cId"] as? String ?? ""
+    // Do something
+     }
+    }
+---
+
+    extension ProductsVC: UICollectionViewDelegateFlowLayout{
+
+    // MARK: - UICollectionViewDelegateFlowLayout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
+    UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+       let collectionWidth = collectionView.bounds.width
+       guard collectionView == collectionProduct else {
+       var itemWidth = collectionWidth / 4 - 1;
+       if(UI_USER_INTERFACE_IDIOM() == .pad) {
+       itemWidth = collectionWidth / 4 - 1;
+       }
+       return CGSize(width: itemWidth, height: 50)
+      }
+      var itemWidth = collectionWidth / 2 - 1;
+      if(UI_USER_INTERFACE_IDIOM() == .pad) {
+      itemWidth = collectionWidth / 4 - 1;
+      }
+      return CGSize(width: itemWidth, height: 250);
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
+    UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+      return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
+    UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+       return 1
+     }
+    }
 
 # UICOLLECTIONVIEW
 =============================
