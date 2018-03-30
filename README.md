@@ -26,9 +26,13 @@
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrGoal.count
     }
+    
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 22))
     view.backgroundColor = UIColor.groupTableViewBackgroundColor()
