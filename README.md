@@ -29,6 +29,25 @@
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrGoal.count
     }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 22))
+    view.backgroundColor = UIColor.groupTableViewBackgroundColor()
+    let label = UILabel()
+    label.font = UIFont.systemFontOfSize(12)
+    label.textColor = UIColor.darkGrayColor()
+    switch section {
+    case 1:
+    label.text = "Title"
+    label.frame = labelFrame
+    let more = UIButton(frame: btnFrame)
+    more.setTitle("See more", forState:.Normal)
+    view.addSubview(more)
+    default:
+    label.frame = CGRect.zero
+     }
+    view.addSubview(label)
+    return view;
+    }
 ---    
 
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
