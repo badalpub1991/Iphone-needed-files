@@ -1,28 +1,26 @@
-//Types of Mark in Xcode
+    //Types of Mark in Xcode
 
-
-```// MARK:data
-// TODO:data
-// FIXME:data
-// ???:data
-// !!!:data```
-
+    // MARK:data
+    // TODO:data
+    // FIXME:data
+    // ???:data
+    // !!!:data
 
 #### UITableView with CustomCell
 
-   override func viewDidLoad() {
-   super.viewDidLoad()
-   //--------------------------   RegisterCell without XIB   -------------------------------------//
-   // Register Cell Class
-   tableView.register(CustomTableViewCell.self, forCellReuseIdentifier:
-   CustomTableViewCell.identifier)
-   //-----------------------------  RegisterCell with XIB .  --------------------------------------//
-   // Register Nib
-   tableView.register(UINib(nibName: CustomTableViewCell.identifier, bundle: nil),
-   forCellReuseIdentifier: CustomTableViewCell.identifier)
-    }
+    override func viewDidLoad() {
+    super.viewDidLoad()
+    //--------------------------   RegisterCell without XIB   -------------------------------------//
+    // Register Cell Class
+    tableView.register(CustomTableViewCell.self, forCellReuseIdentifier:
+    CustomTableViewCell.identifier)
+    //-----------------------------  RegisterCell with XIB .  --------------------------------------//
+    // Register Nib
+    tableView.register(UINib(nibName: CustomTableViewCell.identifier, bundle: nil),
+    forCellReuseIdentifier: CustomTableViewCell.identifier)
+     }
     
-   //--------------------------  TableView DataSource and Delegate Methods --------------------------//
+    //--------------------------  TableView DataSource and Delegate Methods --------------------------//
     extension GoalsVc: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -31,7 +29,8 @@
         return arrGoal.count
     }
 ---    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard  let cell = tableView.dequeueReusableCell(withIdentifier: "GoalCell", for: indexPath) as? GoalCell else {return UITableViewCell()}
         let goal = arrGoal[indexPath.row]
          cell.configureCell(goal: goal)
@@ -39,7 +38,8 @@
         
         return cell
     }
----    
+---   
+
     //With this we can edit UITableview ex. Swipe to Delete
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -50,6 +50,7 @@
         return UITableViewCellEditingStyle.none
     }
 ---    
+
     //Delete Action
     1) Create delete Action 2) Remove data with Indexpath 3) fetch data from coredata 4) delete tableview        row 4) set  delete button background color 5) return deleteAction in arry wether it is single
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
